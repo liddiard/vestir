@@ -1,17 +1,14 @@
 import json
+import urllib2
 
 from django.views.generic import View
 from django.http import HttpResponse, Http404
 
+from vestir.settings.base import WUNDERGROUND_API_KEY
 
-class AjaxView(View):
 
-    def dispatch(self, request, *args, **kwargs):
-        if request.is_ajax: 
-            return super(AjaxView, self).dispatch(*args, **kwargs)
-        else:
-            raise Http404
-        
+class ApiView(View):
+
     def json_response(self, **kwargs):
         return HttpResponse(json.dumps(kwargs), content_type="application/json")
 
@@ -22,10 +19,21 @@ class AjaxView(View):
         return self.json_response(result=1, error=error_type, message=message)
 
 
-class RecommendView(AjaxView):
+class RecommendView(ApiView):
     
     def post(self, request):
-        pass
+        dates = request.POST.get('dates')
+        gender = request.POST.get('gender')
+        if dates is None:
+            return self.error(error='KeyError', message='Required key (data) '
+                              'not found in request.')
+        if gender is None:
+            return self.error(error='KeyError', message='Required key (gender) '
+                              'not found in request.')
+        for date in dates:
+            urllib2.urlopen('http://api.wunderground.com/api/%s/forecast10day/'
+                            'q/%s/%s.json') % (WUNDERGROUND_API_KEY, state, 
+                                               city)
 
 
 boots=Footwear(boots.name = "Boots", boots.gender = 'b', boots.temp_min = None,
