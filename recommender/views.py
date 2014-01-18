@@ -20,3 +20,9 @@ class AjaxView(View):
 
     def error(self, error_type, message):
         return self.json_response(result=1, error=error_type, message=message)
+
+
+class RecommendView(AjaxView):
+    
+    def post(self, request):
+        pass
