@@ -4,6 +4,8 @@ import hashlib
 
 from django.views.generic import View
 from django.http import HttpResponse, Http404
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 
 from vestir.settings.base import WUNDERGROUND_API_KEY
 from .models import Clothing
@@ -23,6 +25,7 @@ class ApiView(View):
 
 class RecommendView(ApiView):
     
+    @method_decorator(csrf_exempt)
     def post(self, request):
         days = request.POST.get('days')
         gender = request.POST.get('gender')
