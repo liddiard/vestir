@@ -4,8 +4,9 @@ from django.db import models
 
 class Clothing(object):
 
-    def __init__(self, gender=None, temp_min=None, temp_max=None, snow=False, 
+    def __init__(self, name, gender=None, temp_min=None, temp_max=None, snow=False, 
                  sun=False, rain=False, is_extreme=True):
+        self.name = name
         self.gender = gender
         self.temp_min = temp_min
         self.temp_max = temp_max
