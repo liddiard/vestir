@@ -32,7 +32,7 @@ class RecommendView(ApiView):
     def post(self, request):
         days = request.POST.get('days')
         gender = request.POST.get('gender')
-        if dates is None:
+        if days is None:
             return self.error(error='KeyError', message='Required key (data) '
                               'not found in request.')
         if gender is None:
