@@ -33,11 +33,11 @@ class RecommendView(ApiView):
         for day in days:
             state = day.location.state
             city = '_'.join(day.location.city.split(' '))
-            url = urllib2.urlopen('http://api.wunderground.com/api/%s/'
-                                  'forecast10day/q/%s/%s.json') % \
-                                  (WUNDERGROUND_API_KEY, state, city)
-            wunder = json.dumps(url.read())
-            print wunder
+            data = urllib2.urlopen('http://api.wunderground.com/api/%s/'
+                                   'forecast10day/q/%s/%s.json') % \
+                                   (WUNDERGROUND_API_KEY, state, city)
+            jsn = json.load(data)
+            print jsn
 
 #Footware
 boots=Footwear(name="Boots", gender='b', temp_min=None, temp_max=70, sun=True,
