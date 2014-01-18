@@ -37,7 +37,7 @@ class RecommendView(ApiView):
                                    'forecast10day/q/%s/%s.json') % \
                                    (WUNDERGROUND_API_KEY, state, city)
             jsn = json.load(data)
-            print jsn
+            return self.success(result=jsn)
 
 #Footware
 boots=Footwear(name="Boots", gender='b', temp_min=None, temp_max=70, sun=True,
