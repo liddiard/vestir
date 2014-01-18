@@ -22,7 +22,7 @@ class ApiView(View):
 class RecommendView(ApiView):
     
     def post(self, request):
-        dates = request.POST.get('dates')
+        days = request.POST.get('days')
         gender = request.POST.get('gender')
         if dates is None:
             return self.error(error='KeyError', message='Required key (data) '
@@ -30,10 +30,14 @@ class RecommendView(ApiView):
         if gender is None:
             return self.error(error='KeyError', message='Required key (gender) '
                               'not found in request.')
-        for date in dates:
-            urllib2.urlopen('http://api.wunderground.com/api/%s/forecast10day/'
-                            'q/%s/%s.json') % (WUNDERGROUND_API_KEY, state, 
-                                               city)
+        for day in days:
+            state = day.location.state
+            city = '_'.join(day.location.city.split(' '))
+            url = urllib2.urlopen('http://api.wunderground.com/api/%s/'
+                                  'forecast10day/q/%s/%s.json') % \
+                                  (WUNDERGROUND_API_KEY, state, city)
+            wunder = json.dumps(url.read())
+            print wunder
 
 #Footware
 boots=Footwear(name="Boots", gender='b', temp_min=None, temp_max=70, sun=True,
