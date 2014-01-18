@@ -39,9 +39,16 @@ class RecommendView(ApiView):
             return self.error(error='KeyError', message='Required key (gender) '
                               'not found in request.')
         for day in days:
-            state = day.location.state
-            city = '_'.join(day.location.city.split(' '))
-            
+            try:
+                state = day.location.state
+            except AttributeError:
+                return self.error(error='KeyError', message='Required key '
+                                  '(location.state) not found in request.')
+            try:
+                city = '_'.join(day.location.city.split(' '))
+            except AttributeError:
+                return self.error(error='KeyError', message='Required key '
+                                  '(location.city) not found in request.')
             data = urllib2.urlopen('http://api.wunderground.com/api/%s/'
                                    'forecast10day/q/%s/%s.json') % \
                                    (WUNDERGROUND_API_KEY, state, city)
