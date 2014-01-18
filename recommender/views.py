@@ -52,7 +52,7 @@ sandals=Clothing(name="Sandals", gender='b', temp_min=75, temp_max=None,
 sneakers=Clothing(name="Tennis Shoes", gender='b', temp_min=50, temp_max=None, 
                   sun=True, snow=False, rain=False, is_extreme=False)
 #Add footwear to list
-
+footwear = [boots, sandals, sneakers]
 #Accessory
 umbrella = Clothing(name="Umbrella", gender='b', temp_min=None, temp_max=None,
                      sun=False, snow=False, rain=True, is_extreme=True)
@@ -63,7 +63,7 @@ warm_hat = Clothing(name="Warm Hat",gender='b', temp_min=None, temp_max=60,
 scarf = Clothing(name="Scarf", gender='b', temp_min=None, temp_max=60, 
                     sun=True, snow=True, rain=True, is_extreme=False)
 #Add Accessories to List
-
+accessories = [umbrella, warm_hat, scarf]
 #Tops of outfits
 tshirts = Clothing(name="T-Shirt", gender='b', temp_min=65, temp_max=None,
                sun=True, snow=False, rain=True, is_extreme=False)
@@ -74,7 +74,7 @@ long_shirt = Clothing(name="Long-Sleeved Shirt", gender='b', temp_min=None,
 short_shirt = Clothing(name="Short-Sleeved Shirt", gender='b', temp_min=35, 
                   temp_max=90, sun=True, snow=True, rain=True, is_extreme=False)
 #Add Accessories to List
-
+tops = [tshirts, long_shirt, short_shirt]
 #Bottoms of outfits
 jeans = Clothing(name="Jeans", gender='b', temp_min=None, temp_max=95, 
                 sun=True, snow=True, rain=True, is_extreme=True)
@@ -85,7 +85,7 @@ shorts = Clothing(name="Long Sleeved Shirt", gender='b', temp_min=55,
 thermal_underwear = Clothing(name="Thermal Underwear", gender='b', temp_min=35, 
                   temp_max=75, sun=True, snow=True, rain=True, is_extreme=True)
 #Add Bottoms to List
-
+bottoms = [jeans, shorts, thermal_underwear]
 #Jackets
 heavy_coat = Clothing(name="Heavy Coat", gender='b', temp_min=None, 
                   temp_max=60, sun=True, snow=True, rain=True, is_extreme=True)
@@ -96,3 +96,4 @@ sweater = Clothing(name="Sweater", gender='b', temp_min=61,
 wool_coat = Clothing(name="Heavy Wool Coat", gender='b', temp_min=None, 
                   temp_max=59, sun=True, snow=True, rain=False, is_extreme=True)
 #Add Jackets to List
+jackets = [heavy_coat, sweater, wool_coat]
