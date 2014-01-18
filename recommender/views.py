@@ -75,7 +75,7 @@ scarf = Clothing(name="Scarf", gender='b', temp_min=None, temp_max=60,
 sunscreen = Clothing(name="Sunscreen", gender='b', temp_min=None, temp_max=None,
                      sun=True, snow=False, rain=False, is_extreme=False)
 #Add Accessories to List
-accessories = [umbrella, warm_hat, scarf, Sunscreen]
+accessories = [umbrella, warm_hat, scarf, sunscreen]
 #Tops of outfits
 tshirts = Clothing(name="T-Shirt", gender='b', temp_min=65, temp_max=None,
                sun=True, snow=False, rain=True, is_extreme=False)
