@@ -25,7 +25,7 @@ class ApiView(View):
 
 class RecommendView(ApiView):
 
-    @method_decorator(csrf_exempt)
+    @csrf_exempt
     def dispatch(self, *args, **kwargs):
         return super(RecommendView, self).dispatch(*args, **kwargs)
     
