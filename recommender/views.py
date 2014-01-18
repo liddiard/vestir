@@ -19,8 +19,8 @@ class ApiView(View):
     def success(self, **kwargs):
         return self.json_response(result=0, **kwargs)
 
-    def error(self, error, message):
-        return self.json_response(result=1, error=error, message=message)
+    def error(self, error_type, message):
+        return self.json_response(result=1, error=error_type, message=message)
 
 
 class RecommendView(ApiView):
@@ -39,16 +39,9 @@ class RecommendView(ApiView):
             return self.error(error='KeyError', message='Required key (gender) '
                               'not found in request.')
         for day in days:
-            try:
-                state = day.location.state
-            except AttributeError:
-                return self.error(error='KeyError', message='Required key '
-                                  '(location.state) not found in request.')
-            try:
-                city = '_'.join(day.location.city.split(' '))
-            except AttributeError:
-                return self.error(error='KeyError', message='Required key '
-                                  '(location.city) not found in request.')
+            state = day.location.state
+            city = '_'.join(day.location.city.split(' '))
+            
             data = urllib2.urlopen('http://api.wunderground.com/api/%s/'
                                    'forecast10day/q/%s/%s.json') % \
                                    (WUNDERGROUND_API_KEY, state, city)
@@ -83,7 +76,7 @@ sunscreen = Clothing(name="Sunscreen", gender='b', temp_min=None, temp_max=None,
                      sun=True, snow=False, rain=False, is_extreme=False)
 #Add Accessories to List
 accessories = [umbrella, warm_hat, scarf, sunscreen]
-#Tops of outfits
+#Tops of outfit
 tshirts = Clothing(name="T-Shirt", gender='b', temp_min=65, temp_max=None,
                sun=True, snow=False, rain=True, is_extreme=False)
 
