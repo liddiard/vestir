@@ -30,9 +30,9 @@ class RecommendView(ApiView):
         return super(RecommendView, self).dispatch(*args, **kwargs)
     
     def post(self, request):
-        return self.json_response(response=', '.join(request.POST)) # TODO: stopgap
-        days = request.POST.get('days')
-        gender = request.POST.get('gender')
+        data = json.loads(request.raw_post_data)
+        days = data.get('days')
+        gender = data.get('gender')
         if days is None:
             return self.error(error='KeyError', message='Required key (days) '
                               'not found in request.')
