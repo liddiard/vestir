@@ -1,12 +1,12 @@
 import json
 import urllib2
 import hashlib
-from .models import Accessories, Tops, Bottoms, Jackets, Footwear
 
 from django.views.generic import View
 from django.http import HttpResponse, Http404
 
 from vestir.settings.base import WUNDERGROUND_API_KEY
+from .models import Accessories, Tops, Bottoms, Jackets, Footwear
 
 
 class ApiView(View):
