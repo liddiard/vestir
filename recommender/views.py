@@ -1,5 +1,7 @@
 import json
 import urllib2
+import hashlib
+from .models import Accessories, Tops, Bottoms, Jackets, Footwear
 
 from django.views.generic import View
 from django.http import HttpResponse, Http404
@@ -33,11 +35,12 @@ class RecommendView(ApiView):
         for day in days:
             state = day.location.state
             city = '_'.join(day.location.city.split(' '))
+            
             data = urllib2.urlopen('http://api.wunderground.com/api/%s/'
                                    'forecast10day/q/%s/%s.json') % \
                                    (WUNDERGROUND_API_KEY, state, city)
             jsn = json.load(data)
-            return self.success(result=jsn)
+            print jsn
 
 #Footware
 boots=Footwear(name="Boots", gender='b', temp_min=None, temp_max=70, sun=True,
@@ -49,7 +52,7 @@ sandals=Footwear(name="Sandals", gender='b', temp_min=75, temp_max=None,
 sneakers=Footwear(name="Tennis Shoes", gender='b', temp_min=50, temp_max=None, 
                   sun=True, snow=False, rain=False, is_extreme=False)
 #Accessory
-umbrella = Accessory(name="Umbrella", gender='b', temp_min=None, temp_max=None,
+umbrella = Accessories(name="Umbrella", gender='b', temp_min=None, temp_max=None,
                      sun=False, snow=False, rain=True, is_extreme=True)
 
 warm_hat = Accessories(name="Warm Hat",gender='b', temp_min=None, temp_max=60, 
