@@ -15,6 +15,9 @@ class Footwear(Clothing):
     def __init__(self, **kwargs):
         super(Footwear, self).__init__(**kwargs)
 
+class Jackets(Clothing):
+    def __init__(self, **kwargs):
+        super(Jackets, self).__init__(**kwargs)
 
 class Tops(Clothing):
     def __init__(self, **kwargs):

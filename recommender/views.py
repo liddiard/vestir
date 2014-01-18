@@ -26,3 +26,18 @@ class RecommendView(AjaxView):
     
     def post(self, request):
         pass
+
+
+boots=Footwear(boots.name = "Boots", boots.gender = 'b', boots.temp_min = None,
+               boots.temp_max = 70, boots.sun = True, boots.snow = True, 
+               boots.rain = True)
+
+sandals=Footwear(sandals.name = "Sandals", sandals.gender = 'b', 
+                 sandals.temp_min=75, sandals.temp_max=None, sandals.sun=True, 
+                 sandals.snow=False, sandals.rain = False)
+
+sneakers=Footwear(sneakers.name="Tennis Shoes", sneakers.gender='b', 
+                  sneakers.temp_min=50, sneakers.temp_max=None, 
+                  sneakers.sun = True, sneakers.snow = False,
+                  sneakers.rain = False)
+
