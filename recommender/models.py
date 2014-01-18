@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Clothing(object):
-    def __init__(self, gender=none, temp_min=none, temp_max=none, snow=false, 
+    def __init__(self, gender=None, temp_min=None, temp_max=None, snow=false, 
                  sun=false, rain=false,is_extreme=true):
         self.gender = gender
         self.temp_min = temp_min
