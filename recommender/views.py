@@ -19,8 +19,8 @@ class ApiView(View):
     def success(self, **kwargs):
         return self.json_response(result=0, **kwargs)
 
-    def error(self, error_type, message):
-        return self.json_response(result=1, error=error_type, message=message)
+    def error(self, error, message):
+        return self.json_response(result=1, error=error, message=message)
 
 
 class RecommendView(ApiView):
