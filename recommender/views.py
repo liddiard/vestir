@@ -30,6 +30,7 @@ class RecommendView(ApiView):
         return super(RecommendView, self).dispatch(*args, **kwargs)
     
     def post(self, request):
+        return self.json_response(request.POST) # TODO: stopgap
         days = request.POST.get('days')
         gender = request.POST.get('gender')
         if days is None:
