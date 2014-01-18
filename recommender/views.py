@@ -86,7 +86,7 @@ long_shirt = Clothing(name="Long-Sleeved Shirt", gender='b', temp_min=None,
 short_shirt = Clothing(name="Short-Sleeved Shirt", gender='b', temp_min=35, 
                   temp_max=90, sun=True, snow=True, rain=True, is_extreme=False)
 
-cardigan = Clothing(name="Cardigan", gender='b', temp_min=None, temp_max=80, sun=True, Snow=True, Rain=True, is_extreme=False)
+cardigan = Clothing(name="Cardigan", gender='b', temp_min=None, temp_max=80, sun=True, snow=True, rain=True, is_extreme=False)
 #Add Accessories to List
 tops = [tshirts, long_shirt, short_shirt]
 #Bottoms of outfits
