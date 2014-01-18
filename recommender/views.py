@@ -24,8 +24,11 @@ class ApiView(View):
 
 
 class RecommendView(ApiView):
-    
+
     @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(RecommendView, self).dispatch(*args, **kwargs)
+    
     def post(self, request):
         days = request.POST.get('days')
         gender = request.POST.get('gender')
