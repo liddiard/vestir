@@ -41,12 +41,12 @@ class RecommendView(ApiView):
                               'not found in request.')
         for day in days:
             try:
-                state = day.location.state
+                state = day['location']['state']
             except KeyError:
                 return self.error(error='KeyError', message='Required key '
                                   '(location.state) not found in request.')
             try:
-                city = '_'.join(day.location.city.split(' '))
+                city = '_'.join(day['location']['city'].split(' '))
             except KeyError:
                 return self.error(error='KeyError', message='Required key '
                                   '(location.city) not found in request.')
