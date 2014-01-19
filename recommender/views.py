@@ -50,9 +50,10 @@ class RecommendView(ApiView):
             except KeyError:
                 return self.error(error='KeyError', message='Required key '
                                   '(location.city) not found in request.')
-            data = urllib2.urlopen('http://api.wunderground.com/api/%s/'
-                                   'forecast10day/q/%s/%s.json') % \
-                                   (WUNDERGROUND_API_KEY, state, city)
+            url = "http://api.wunderground.com/api/%s/forecast10day/q/%s/%s.json" % \ 
+                  (WUNDERGROUND_API_KEY, state, city)
+            return self.json_response(url=url)
+            data = urllib2.urlopen(url)
             jsn = json.load(data)
             print jsn
 
