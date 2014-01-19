@@ -43,8 +43,9 @@ class RecommendView(ApiView):
         return super(RecommendView, self).dispatch(*args, **kwargs)
     
     def post(self, request):
-        days = request.body.get('days')
-        gender = request.body.get('gender')
+        obj = json.loads(request.body)
+        days = obj.get('days')
+        gender = obj.get('gender')
         if days is None:
             return self.error(error='KeyError', message='Required key (days) '
                               'not found in request.')
@@ -53,18 +54,19 @@ class RecommendView(ApiView):
                               'not found in request.')
         for day in days:
             try:
-                state = day.location.state
+                state = day['location']['state']
             except KeyError:
                 return self.error(error='KeyError', message='Required key '
                                   '(location.state) not found in request.')
             try:
-                city = '_'.join(day.location.city.split(' '))
+                city = '_'.join(day['location']['city'].split(' '))
             except KeyError:
                 return self.error(error='KeyError', message='Required key '
                                   '(location.city) not found in request.')
-            data = urllib2.urlopen('http://api.wunderground.com/api/%s/'
-                                   'forecast10day/q/%s/%s.json') % \
-                                   (WUNDERGROUND_API_KEY, state, city)
+            url = "http://api.wunderground.com/api/%s/forecast10day/q/%s/%s.json" % \ 
+                  (WUNDERGROUND_API_KEY, state, city)
+            return self.json_response(url=url)
+            data = urllib2.urlopen(url)
             jsn = json.load(data)
             print jsn
 
