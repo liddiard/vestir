@@ -13,8 +13,21 @@ from .models import Clothing
 
 class ApiView(View):
 
+f =urlib2.urlopen('http://api.wunderground.com/api/13ca25e0144d7658/forecast10day/q/CA/San_Francisco.json')
+json_string = f.read()
+parsed_json = json.loads(json_string)
+#location = parsed_json['location']['city']
+#temp_f = parsed_json['forecast']['simpleforecast']['forecastday'][0]
+count =0
+for temp_f in parsed_json['forecast']['simpleforecast']['forecastday']:
+            print count
+                    temp_f = parsed_json['forecast']['simpleforecast']['forecastday'][count]
+                            print temp_f
+                                    count += 1
+                                    f.close()
+
     def json_response(self, **kwargs):
-        return HttpResponse(json.dumps(kwargs), content_type="application/json")
+            return HttpResponse(json.dumps(kwargs), content_type="application/json")
 
     def success(self, **kwargs):
         return self.json_response(result=0, **kwargs)
